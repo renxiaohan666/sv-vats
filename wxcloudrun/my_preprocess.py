@@ -1,4 +1,6 @@
 import pandas as pd
+import numpy as np
+
 def handle_cats(df):
     df['Sex_Male'] = df['Sex']=='Male'
     df.drop(columns=['Sex'],inplace=True)
