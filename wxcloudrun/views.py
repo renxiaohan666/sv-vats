@@ -6,7 +6,7 @@ from wxcloudrun.model import Counters
 from wxcloudrun.response import make_succ_empty_response, make_succ_response, make_err_response
 import pandas as pd
 import numpy as np
-'''
+
 def handle_cats(df):
     df['Sex_Male'] = df['Sex']=='Male'
     df.drop(columns=['Sex'],inplace=True)
@@ -34,7 +34,7 @@ def handle_cats(df):
     
     print(f'现在的features:{list(df.columns)}')
     return df
-
+'''
 def preprocess(data):
     bool_mapping = {
         '否':False,
