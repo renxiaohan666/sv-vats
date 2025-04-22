@@ -6,7 +6,7 @@ from wxcloudrun.model import Counters
 from wxcloudrun.response import make_succ_empty_response, make_succ_response, make_err_response
 import pandas as pd
 import numpy as np
-
+'''
 def handle_cats(df):
     df['Sex_Male'] = df['Sex']=='Male'
     df.drop(columns=['Sex'],inplace=True)
@@ -147,7 +147,7 @@ def preprocess(data):
         elif k=='rcra':
             new_data['RCRI'] = bool_mapping.get(v,1)
     return new_data
-
+'''
 @app.route('/')
 def index():
     """
