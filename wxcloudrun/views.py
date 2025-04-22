@@ -34,7 +34,7 @@ def handle_cats(df):
     
     print(f'现在的features:{list(df.columns)}')
     return df
-'''
+
 def preprocess(data):
     bool_mapping = {
         '否':False,
@@ -147,7 +147,8 @@ def preprocess(data):
         elif k=='rcra':
             new_data['RCRI'] = bool_mapping.get(v,1)
     return new_data
-'''
+
+
 @app.route('/')
 def index():
     """
