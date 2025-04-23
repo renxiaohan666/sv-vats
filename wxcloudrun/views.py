@@ -155,16 +155,16 @@ def predict(data):
     new_data = pd.DataFrame([new_data])
     new_data = handle_cats(new_data)
     print(list(new_data.columns))
-    
-    lgb_model = joblib.load('./to_app/lgb_single_model')
+
+    lgb_model = joblib.load('./wxcloudrun/to_app/lgb_single_model')
     y_pred_lgb = lgb_model.predict_proba(new_data)[:,1]
     print(y_pred_lgb)
 
-    cat_model = joblib.load('./to_app/cat_single_model')
+    cat_model = joblib.load('./wxcloudrun/to_app/cat_single_model')
     y_pred_cat = cat_model.predict_proba(new_data)[:,1]
     print(y_pred_cat)
 
-    xgb_model = joblib.load('./to_app/xgb_single_model')
+    xgb_model = joblib.load('./wxcloudrun/to_app/xgb_single_model')
     y_pred_xgb = xgb_model.predict_proba(new_data)[:,1]
     print(y_pred_xgb)
 
