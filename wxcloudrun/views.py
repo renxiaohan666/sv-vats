@@ -155,9 +155,7 @@ def predict(data):
     new_data = pd.DataFrame([new_data])
     new_data = handle_cats(new_data)
     print(list(new_data.columns))
-    cat_cols = joblib.load('./to_app/cat_cols.jbl')
-
-    ##print(list(lgb_features))
+    
     lgb_model = joblib.load('./to_app/lgb_single_model')
     y_pred_lgb = lgb_model.predict_proba(new_data)[:,1]
     print(y_pred_lgb)
