@@ -6,6 +6,7 @@ from wxcloudrun.model import Counters
 from wxcloudrun.response import make_succ_empty_response, make_succ_response, make_err_response
 import pandas as pd
 import numpy as np
+import joblib
 
 def handle_cats(df):
     df['Sex_Male'] = df['Sex']=='Male'
@@ -148,6 +149,30 @@ def preprocess(data):
             new_data['RCRI'] = bool_mapping.get(v,1)
     return new_data
 
+def predict(data):
+    print(data)
+    new_data = preprocess(data)
+    new_data = pd.DataFrame([new_data])
+    new_data = handle_cats(new_data)
+    print(list(new_data.columns))
+    cat_cols = joblib.load('./to_app/cat_cols.jbl')
+
+    ##print(list(lgb_features))
+    lgb_model = joblib.load('./to_app/lgb_single_model')
+    y_pred_lgb = lgb_model.predict_proba(new_data)[:,1]
+    print(y_pred_lgb)
+
+    cat_model = joblib.load('./to_app/cat_single_model')
+    y_pred_cat = cat_model.predict_proba(new_data)[:,1]
+    print(y_pred_cat)
+
+    xgb_model = joblib.load('./to_app/xgb_single_model')
+    y_pred_xgb = xgb_model.predict_proba(new_data)[:,1]
+    print(y_pred_xgb)
+
+    final_pred = 0.02*y_pred_lgb+0.672*y_pred_cat+0.308*y_pred_xgb
+    print(final_pred)
+    return final_pred
 
 @app.route('/')
 def index():
