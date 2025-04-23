@@ -188,11 +188,16 @@ def count():
     :return:计数结果/清除结果
     """
 
-    # 获取请求体参数
-    data = request.get_json()
-    print(f'得到的params:{data}')
-    pred = predict(data)
-    return make_succ_response(data)
+    try:
+        # 获取请求体参数
+        data = request.get_json()
+        print(f'得到的params:{data}')
+        pred = predict(data)
+        return make_succ_response(data)
+    except Exception as e:
+        # 捕获异常并返回错误信息
+        err_msg = str(e)
+        return make_err_response(err_msg)
     '''
     # 检查action参数
     if 'action' not in params:
