@@ -191,7 +191,7 @@ def count():
         data = request.get_json()
         print(f'得到的params:{data}')
         pred = predict(data)
-        return make_succ_response(data)
+        return make_succ_response(pred)
     except Exception as e:
         # 捕获异常并返回错误信息
         err_msg = str(e)
