@@ -189,9 +189,10 @@ def count():
     """
 
     # 获取请求体参数
-    params = request.get_json()
-    print(f'得到的params:{params}')
-    return make_succ_response(params)
+    data = request.get_json()
+    print(f'得到的params:{data}')
+    pred = predict(data)
+    return make_succ_response(data)
     '''
     # 检查action参数
     if 'action' not in params:
