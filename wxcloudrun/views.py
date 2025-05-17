@@ -150,10 +150,13 @@ def preprocess(data):
     return new_data
 
 def predict(data):
+    num_cols = joblib.load('./wxcloudrun/to_app/num_cols.txt')
+    imputer_num = joblib.load('./wxcloudrun/to_app/imputer_num')
     print(data)
     new_data = preprocess(data)
     new_data = pd.DataFrame([new_data])
     new_data = handle_cats(new_data)
+    new_data[num_cols] = imputer_num.transform[num_cols]
     print(list(new_data.columns))
 
     lgb_model = joblib.load('./wxcloudrun/to_app/lgb_single_model')
