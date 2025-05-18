@@ -156,7 +156,7 @@ def predict(data):
     new_data = preprocess(data)
     new_data = pd.DataFrame([new_data])
     new_data = handle_cats(new_data)
-    new_data[num_cols] = imputer_num.transform[num_cols]
+    new_data[num_cols] = imputer_num.transform(new_data[num_cols])
     print(list(new_data.columns))
 
     lgb_model = joblib.load('./wxcloudrun/to_app/lgb_single_model')
